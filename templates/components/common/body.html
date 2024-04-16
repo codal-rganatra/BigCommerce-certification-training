@@ -1,0 +1,18 @@
+<div class="body" id="main-content" data-currency-code="{{currency_selector.active_currency_code}}">
+    {{#block "hero"}} {{/block}}
+    <div class="container">
+        <a href="/custom-page/">Go to My Page😊</a>
+        <div>My variable for this theme is:{{theme_settings.popularity}}</div>
+        {{inject "popular" theme_settings.popularity}}
+        {{#block "page"}} {{/block}}
+    </div>
+    {{> components/common/modal/modal}}
+    {{> components/common/alert/alert-modal}}
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var jscontent=JSON.parse({{jsContext}});
+        alert(jscontent.popular);
+    });
+</script>
