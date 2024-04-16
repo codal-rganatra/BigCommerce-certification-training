@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node: [18.15]
+        node: [18.x]
 
     steps:
     - name: Checkout code
@@ -23,19 +23,22 @@ jobs:
       with:
         node-version: ${{ matrix.node }}
 
-    - name: npm cache
-      uses: actions/cache@v2
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
+    # - name: npm cache
+    #   uses: actions/cache@v2
+    #   with:
+    #     path: ~/.npm
+    #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+    #     restore-keys: |
+    #       ${{ runner.os }}-node-
 
     - name: Install Stencil CLI Dependency
       run: npm install -g @bigcommerce/stencil-cli
 
+    - name: change git config 
+      run: git config --global url."https://".insteadOf git://
+      
     - name: Install Dependencies
-      run: npm ci
+      run: npm i
 
 #
 # You must configure store credentials as secrets on your GitHub repo for automatic deployment via GitHub Actions
@@ -47,7 +50,7 @@ jobs:
       env:
         URL: "https://store-rzsjv8ad5x.mybigcommerce.com/"
         TOKEN: "noa1yo1c0380dvzztwbzcqgivo4cxge"
-      run: stencil init -u $URL -t $TOKEN -p 3000 -h https://api.bigcommerce.com
+      run: stencil init -u "https://store-rzsjv8ad5x.mybigcommerce.com/" -t "noa1yo1c0380dvzztwbzcqgivo4cxge" -p 3000 -h https://api.bigcommerce.com
 
     - name: Push theme live, automatically deleting oldest theme if necessary
       run: stencil push -a -d -c 1
