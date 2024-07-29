@@ -41,5 +41,6 @@ jobs:
             "load_method": "default",
             "location": "footer",
             "visibility": "all_pages",
-            "kind": "script_tag"
-          }'
+            "kind": "script_tag",
+            "consent_category": "essential"
+            }'
