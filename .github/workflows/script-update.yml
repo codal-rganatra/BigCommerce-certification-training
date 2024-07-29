@@ -27,6 +27,7 @@ jobs:
           BC_ACCESS_TOKEN: ${{ secrets.SCRIPT_ACCESS_TOKEN }}
           SCRIPT_UUID: ${{ secrets.SCRIPT_UUID }}
         run: |
+          HTML_CONTENT=$(cat /scripts/bootstrapscript.html)
           curl -X PUT \
           https://api.bigcommerce.com/stores/${{ secrets.STORE_HASH }}/v3/content/scripts/${{ secrets.SCRIPT_UUID }} \
           -H "X-Auth-Token: ${{ secrets.SCRIPT_ACCESS_TOKEN }}" \
@@ -34,7 +35,7 @@ jobs:
           -d '{
             "name": "Bootstrapscript",
             "description": "Build responsive websites script",
-            "html": "'"$(cat ./scripts/bootstrapscript.html)"'",
+            "html":HTML_CONTENT"'",
             "auto_uninstall": true,
             "load_method": "default",
             "location": "footer",
