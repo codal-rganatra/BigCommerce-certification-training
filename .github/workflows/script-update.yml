@@ -34,7 +34,7 @@ jobs:
           -d '{
             "name": "Bootstrapscript",
             "description": "Build responsive websites script",
-            "html": "'"$(cat /scripts/bootstrapscript.html)"'",
+            "html": "'"$(cat ./scripts/bootstrapscript.html)"'",
             "auto_uninstall": true,
             "load_method": "default",
             "location": "footer",
