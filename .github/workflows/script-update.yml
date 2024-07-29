@@ -36,7 +36,7 @@ jobs:
           -d '{
             "name": "Bootstrapscript",
             "description": "Build responsive websites script",
-            "html": "$HTML_CONTENT",
+            "html": "'"$HTML_CONTENT"'",
             "auto_uninstall": true,
             "load_method": "default",
             "location": "footer",
