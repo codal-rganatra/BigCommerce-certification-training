@@ -29,6 +29,7 @@ jobs:
           var fs = require('fs');
           require('dotenv').config();
           let fetch_data = 'https://api.bigcommerce.com/stores/rzsjv8ad5x/v3/content/scripts';
+          echo "${fetch_data}"
           let options = {
               method: 'GET',
               headers: {
