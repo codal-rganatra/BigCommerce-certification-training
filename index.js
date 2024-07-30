@@ -7,7 +7,7 @@ let options = {
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'X-Auth-Token': '38b5mh1xc3ng5ckc67adf76z5ygb80g'
+        'X-Auth-Token': process.env.BIGCOMMERCE_API_TOKEN
     }
 };
 
@@ -35,7 +35,7 @@ function update_script(api_data) {
                             headers: {
                                 Accept: 'application/json',
                                 'Content-Type': 'application/json',
-                                'X-Auth-Token': '38b5mh1xc3ng5ckc67adf76z5ygb80g'
+                                'X-Auth-Token': process.env.BIGCOMMERCE_API_TOKEN
                             },
                             body: `{"name":"${script.name}","description":"${script.description}","html":"${data.toString()}","auto_uninstall":${script.auto_uninstall},"load_method":"${script.load_method}","location":"${script.location}","visibility":"${script.visibility}","kind":"${script.kind}","consent_category":"${script.consent_category}"}`
                         };
