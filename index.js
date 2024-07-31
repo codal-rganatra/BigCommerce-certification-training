@@ -24,12 +24,10 @@ function update_script(api_data) {
             let fname = filename.join(".");
             let scripts = api_data.data;
             scripts.forEach(async function(script) {
-                console.log(script);
                 let scriptname=script.name.split(" ").join("-");
                 if(scriptname==fname){
                     let url = await 'https://api.bigcommerce.com/stores/rzsjv8ad5x/v3/content/scripts/' + script.uuid;
                     fs.readFile(`scripts/${file}`, async (err, data) => {
-                        // console.log(data.toString());
                         let options = {
                             method: 'PUT',
                             headers: {
@@ -37,11 +35,22 @@ function update_script(api_data) {
                                 'Content-Type': 'application/json',
                                 'X-Auth-Token': process.env.BIGCOMMERCE_API_TOKEN
                             },
-                            body: `{"name":"${script.name}","description":"${script.description}","html":"${data.toString()}","auto_uninstall":${script.auto_uninstall},"load_method":"${script.load_method}","location":"${script.location}","visibility":"${script.visibility}","kind":"${script.kind}","consent_category":"${script.consent_category}"}`
+                            body: JSON.stringify({
+                                name: script.name,
+                                description: script.description,
+                                html: data.toString(),
+                                auto_uninstall: script.auto_uninstall,
+                                load_method: script.load_method,
+                                location: script.location,
+                                visibility: script.visibility,
+                                kind: script.kind,
+                                consent_category: script.consent_category
+                            })
+                            // body: `{"name":"${script.name}","description":"${script.description}","html":"${data.toString()}","auto_uninstall":${script.auto_uninstall},"load_method":"${script.load_method}","location":"${script.location}","visibility":"${script.visibility}","kind":"${script.kind}","consent_category":"${script.consent_category}"}`
                         };
                         await fetch(url, options)
                             .then(res => res.json())
-                            .then(json => console.log(json))
+                            .then((json) => {})
                             .catch(err => console.error('error:' + err));
                     });
                 }
