@@ -13,7 +13,7 @@ let options = {
 
 fetch(fetch_data, options)
     .then(response => response.json())
-    .then(data => update_script(data))
+    .then((data) => {update_script(data);console.log("Script Update done.");})
     .catch(err => console.error('error:' + err));
 
 function update_script(api_data) {

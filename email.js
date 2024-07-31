@@ -13,7 +13,7 @@ let options = {
 
 fetch(fetch_data, options)
     .then(response => response.json())
-    .then(data => update_templates(data))
+    .then((data) => {update_templates(data);console.log("Templates Update done.");})
     .catch(err => console.error('error:' + err));
 
 function update_templates(api_data) {
