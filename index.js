@@ -44,11 +44,8 @@ function update_script(api_data) {
                             .then(json => console.log(json))
                             .catch(err => console.error('error:' + err));
                     });
-                    
                 }
             });
-            
         });
     });
-
 }

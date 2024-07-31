@@ -18,7 +18,6 @@ fetch(fetch_data, options)
 
 function update_templates(api_data) {
     fs.readdir('email-templates', (err, files) => {
-        console.log("api data");
         files.forEach(file => {
             let filename = file.split('.');
             filename.pop();
@@ -26,14 +25,10 @@ function update_templates(api_data) {
             let all_templates = api_data.data;
             all_templates.forEach(async function(template) {
                 let templatetype=template.type_id;
-                console.log(templatetype);
                 let translations=template.translations;
-                // console.log("my translations",translations);
                 if(templatetype==fname){
                     let url = await 'https://api.bigcommerce.com/stores/rzsjv8ad5x/v3/marketing/email-templates/' + templatetype;
-                    console.log(url);
                     fs.readFile(`email-templates/${file}`, async (err, data) => {
-                        // console.log(data.toString());
                         let options = {
                             method: 'PUT',
                             headers: {
@@ -49,10 +44,9 @@ function update_templates(api_data) {
                             })
                             // body: `{"type_id":"${template.type_id}","subject":"${template.subject}","body":"${data.toString()}","translations":"[${template.translations}]"}`
                         };
-                        console.log("body:",options.body);
                         await fetch(url, options)
                             .then(res => res.json())
-                            .then(json => console.log(json))
+                            .then((json) => {})
                             .catch(err => console.error('error:' + err));
                     });
                 }
