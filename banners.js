@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 var fs = require('fs');
 require('dotenv').config();
-let fetch_data = 'https://api.bigcommerce.com/stores/rzsjv8ad5x/v3/marketing/email-templates';
+let fetch_data = 'https://api.bigcommerce.com/stores/rzsjv8ad5x/v2/banners';
 let options = {
     method: 'GET',
     headers: {
@@ -13,21 +13,21 @@ let options = {
 
 fetch(fetch_data, options)
     .then(response => response.json())
-    .then((data) => {update_templates(data);console.log("Templates Update done.");})
+    .then((data) => {update_templates(data);console.log("Banners Update done.");})
     .catch(err => console.error('error:' + err));
 
 function update_templates(api_data) {
-    fs.readdir('email-templates', (err, files) => {
+    fs.readdir('banners', (err, files) => {
         files.forEach(file => {
             let filename = file.split('.');
             filename.pop();
             let fname = filename.join(".");
-            let all_templates = api_data.data;
-            all_templates.forEach(async function(template) {
-                let templatetype=template.type_id;
-                if(templatetype==fname){
-                    let url = await 'https://api.bigcommerce.com/stores/rzsjv8ad5x/v3/marketing/email-templates/' + templatetype;
-                    fs.readFile(`email-templates/${file}`, async (err, data) => {
+            let all_banners = api_data;
+            all_banners.forEach(async function(banner) {
+                let bannername=banner.name.split(" ").join("-");
+                if(bannername==fname){
+                    let url = await 'https://api.bigcommerce.com/stores/rzsjv8ad5x/v2/banners/' + banner.id;
+                    fs.readFile(`banners/${file}`, async (err, data) => {
                         let options = {
                             method: 'PUT',
                             headers: {
@@ -36,10 +36,13 @@ function update_templates(api_data) {
                                 'X-Auth-Token': process.env.BIGCOMMERCE_API_TOKEN
                             },
                             body: JSON.stringify({
-                                type_id: template.type_id,
-                                subject: template.subject,
-                                body: data.toString(),
-                                translations: template.translations
+                                name: banner.name,
+                                content: data.toString(),
+                                page: banner.page,
+                                location: banner.location,
+                                date_type: banner.date_type,
+                                visible: banner.visible,
+                                item_id: banner.item_id,
                             })
                         };
                         await fetch(url, options)

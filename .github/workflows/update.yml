@@ -1,4 +1,4 @@
-name: Update Scripts and Email Templates to BigCommerce
+name: Update Scripts, Email Templates and Banners to BigCommerce
 
 on:
   push:
@@ -21,9 +21,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Update Scripts and Email Templates to BigCommerce
+      - name: Update Scripts, Email Templates and Banners to BigCommerce
         env:
           BIGCOMMERCE_API_TOKEN: ${{ secrets.BIGCOMMERCE_API_TOKEN }}
         run: |
           node index.js
           node email.js
+          node banners.js
