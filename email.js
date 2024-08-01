@@ -40,9 +40,8 @@ function update_templates(api_data) {
                                 type_id: template.type_id,
                                 subject: template.subject,
                                 body: data.toString(),
-                                translations: translations // Directly using the JSON object
+                                translations: template.translations
                             })
-                            // body: `{"type_id":"${template.type_id}","subject":"${template.subject}","body":"${data.toString()}","translations":"[${template.translations}]"}`
                         };
                         await fetch(url, options)
                             .then(res => res.json())
