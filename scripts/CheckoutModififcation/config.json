@@ -1,0 +1,11 @@
+{
+    "name": "CheckoutModififcation",
+    "description": "Build responsive checkout",
+    "html":"",
+    "auto_uninstall": true,
+    "load_method": "default",
+    "location": "footer",
+    "visibility": "all_pages",
+    "kind": "script_tag",
+    "consent_category": "essential"
+}

@@ -1,0 +1,8 @@
+{
+    "name": "Local Banner",
+    "page": "home_page",
+    "content":"",
+    "location": "bottom",
+    "date_type": "always",
+    "visible": "1"
+}
