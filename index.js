@@ -23,7 +23,7 @@ function update_script(api_data) {
             let all_scripts = api_data.data;
             let script_exist = false;
             for (const script of all_scripts) {
-                let scriptname = script.name.split(" ").join("-");
+                let scriptname = script.name;
                 if (scriptname === folder) {
                     script_exist = true;
                     let url = 'https://api.bigcommerce.com/stores/rzsjv8ad5x/v3/content/scripts/' + script.uuid;

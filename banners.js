@@ -23,7 +23,7 @@ async function update_banners(api_data) {
             let all_banners = api_data;
             let banner_exist = false;
             for (const banner of all_banners) {
-                let bannername = banner.name.split(" ").join("-");
+                let bannername = banner.name;
                 if (bannername === folder) {
                     banner_exist = true;
                     let url = 'https://api.bigcommerce.com/stores/rzsjv8ad5x/v2/banners/' + banner.id;
