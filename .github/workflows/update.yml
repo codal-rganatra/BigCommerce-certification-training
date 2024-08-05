@@ -23,8 +23,9 @@ jobs:
 
       - name: Update Scripts, Email Templates and Banners to BigCommerce
         env:
+          STORE_HASH: ${{secrets.STORE_HASH}}
           BIGCOMMERCE_API_TOKEN: ${{ secrets.BIGCOMMERCE_API_TOKEN }}
         run: |
-          node index.js
+          node script.js
           node email.js
           node banners.js
