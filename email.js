@@ -51,7 +51,7 @@ function update_templates(api_data) {
                             .then((json) => {})
                             .catch(err => console.error('error:' + err));
                     });
-                }s
+                }
             });
         });
     });
