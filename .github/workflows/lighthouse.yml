@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   lighthouse-ci:
@@ -23,3 +26,5 @@ jobs:
 
     - name: Run Lighthouse CI
       run: lhci autorun
+      env:
+        LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
