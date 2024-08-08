@@ -1,10 +1,10 @@
 {
     "ci": {
       "collect": {
-        "startServerCommand": "npm start",
         "url": [
-          "http://localhost:8080"
-        ]
+          "https://bigcommerce-standards-store.mybigcommerce.com/"
+        ],
+        "numberOfRuns": 3
       },
       "assert": {
         "assertions": {
