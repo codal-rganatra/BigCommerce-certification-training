@@ -2,7 +2,7 @@
     "ci": {
       "collect": {
         "url": [
-          "https://bigcommerce-standards-store.mybigcommerce.com/"
+          "https://shop.mini.co.uk/"
         ],
         "numberOfRuns": 3
       },
